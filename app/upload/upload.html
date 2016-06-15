@@ -3,7 +3,7 @@
         <h1>{{up.heading}}</h1>
         <form ng-submit="up.submit()">
         	<input type="file" ng-model="up.file">
-        	<input type="submit" value="upload now">
+        	<input class='btn btn-info' type="submit" value="upload">
         </form>
         <img ng-src="{{url}}" ng-repeat="url in up.photoURLs" alt="">
       </div>

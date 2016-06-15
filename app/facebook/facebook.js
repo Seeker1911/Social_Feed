@@ -6,6 +6,7 @@ angular.module('uplodr')
 
 .factory('facebookFactory', () => {
     var facebookToken = null;
+    var userID = null;
     return {
         facebookAuth: function() {
             //var authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false });
@@ -17,6 +18,8 @@ angular.module('uplodr')
                 // You can use these server side with your app's credentials to access the Twitter API.
                 facebookToken = result.credential.accessToken;
                 console.log("I am logged in!", result.user);
+                console.log("Get user ID", result.user.uid);
+                userID = result.user.uid;
                 var secret = result.credential.secret;
                 // The signed-in user info.
                 var user = result.user;
@@ -32,7 +35,9 @@ angular.module('uplodr')
                 var credential = error.credential;
                 // ...
             });
-
+        },
+        getUserID: function() {
+            return userID;
         }
     }
 })

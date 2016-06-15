@@ -9,10 +9,10 @@
 // }
 
 angular.module('uplodr')
-  .controller('UploadCtrl', function ($timeout, uploadFactory) {
+  .controller('UploadCtrl', function ($timeout, uploadFactory, facebookFactory) {
     const up = this
 
-    up.heading = 'Share your photos with the world!'
+    up.heading = 'Upload Files'
     up.photoURLs = []
 
     up.submit = function () {
@@ -28,8 +28,10 @@ angular.module('uplodr')
           up.photoURLs.push(res.downloadURL)
           return res.downloadURL
         })
-        .then((url) => {
-          firebase.database().ref('/images').push({url})
+        .then((url) => {        
+          const userID = facebookFactory.getUserID()
+          console.log("user id: ", userID);
+          firebase.database().ref('/files').push({url: url, uid: userID})
         })
     }
   })
