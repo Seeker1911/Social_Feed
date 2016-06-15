@@ -24,8 +24,5 @@
   },
   "bugs": {
     "url": "https://github.com/Seeker1911/Social_Feed/issues"
-  },
-  "dependencies": {
-    "electron-prebuilt": "^1.2.2"
   }
 }
