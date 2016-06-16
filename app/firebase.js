@@ -8,5 +8,29 @@ var config = {
     storageBucket: "capstone-cf12b.appspot.com",
   };
   firebase.initializeApp(config);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		  // User is signed in.
+	  console.log("User logged in: ", user.uid);
+		return {
+			getUserID: function() {
+            return userID;
+        }
+		}
+	  
+	} else {
+	    // No user is signed in.
+	  console.log("No user signed in");
+	}
+  });
 })
+
+  .factory('authFactory', () => {
+  	return {
+  		getCurrentUser () {
+  			return firebase.auth().currentUser
+  		}
+  	}
+  })
 

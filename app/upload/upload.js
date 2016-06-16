@@ -29,7 +29,7 @@ angular.module('uplodr')
           return res.downloadURL
         })
         .then((url) => {        
-          const userID = facebookFactory.getUserID()
+          const userID = facebookFactory.getUserID() || twitterFactory.getUserID()
           console.log("user id: ", userID);
           firebase.database().ref('/files').push({url: url, uid: userID})
         })

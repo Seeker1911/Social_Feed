@@ -6,13 +6,11 @@ angular.module('uplodr', ['ngRoute'])
         controller: 'HomeCtrl',
       })
       .when('/twitter', {
-        controller: 'TwitterCtrl',
-        controllerAs: 'twitter',
+        controller: 'TodoCtrl',
         templateUrl: 'todo/todo.html',
       })
       .when('/facebook', {
-        controller: 'FacebookCtrl',
-        controllerAs: 'facebook',
+        controller: 'TodoCtrl',
         templateUrl: 'todo/todo.html',
       })
       .when('/todo', {
