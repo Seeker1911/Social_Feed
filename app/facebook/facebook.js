@@ -12,8 +12,14 @@ angular.module('uplodr')
             //var authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false });
             // createWindow();
             var provider = new firebase.auth.FacebookAuthProvider();
-
+            // var userID = firebase.auth().currentUser.uid
+            if (firebase.auth().currentUser) {
+                // statement
+                // console.log("userID: ", userID);
+            } else {
+                // statement
             return firebase.auth().signInWithPopup(provider)
+            }
 
             // .then(function(result) {
             //     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.

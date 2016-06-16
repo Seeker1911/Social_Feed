@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('uplodr')
-  .controller('TodoCtrl', function ($scope, $timeout, facebookFactory, twitterFactory, $http) {
+  .controller('TodoCtrl', function ($scope, $timeout, facebookFactory, twitterFactory, $http, authFactory) {
     const API_URL = 'https://capstone-cf12b.firebaseio.com'
     $scope.todos = [ ];
     $scope.options = {};
 
-    $scope.addTodo = function (){
+    $scope.addTodo = function (){bm 
       // $scope.todos.push($scope.todo);
       $scope.submit($scope.todo)
         .then(() => $scope.todo = '');
@@ -18,7 +18,7 @@ angular.module('uplodr')
 
     $scope.submit = function (todo) {
       return $timeout(() => {
-        const userID = firebase.auth().getUserID();//facebookFactory.getUserID() || twitterFactory.getUserID()
+        const userID = authFactory.getUserID();//facebookFactory.getUserID() || twitterFactory.getUserID()
 
         firebase.database().ref('/ToDo').push({uid: userID, todo: todo});
       })

@@ -13,11 +13,11 @@ var config = {
 	if (user) {
 		  // User is signed in.
 	  console.log("User logged in: ", user.uid);
-		return {
-			getUserID: function() {
-            return userID;
-        }
-		}
+		// return {
+		// 	getUserID: function() {
+  //           return userID;
+  //       }
+		// }
 	  
 	} else {
 	    // No user is signed in.
@@ -28,8 +28,9 @@ var config = {
 
   .factory('authFactory', () => {
   	return {
-  		getCurrentUser () {
-  			return firebase.auth().currentUser
+  		getUserID () {
+  			return firebase.auth().currentUser.uid
+
   		}
   	}
   })
