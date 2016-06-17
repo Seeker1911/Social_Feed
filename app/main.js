@@ -1,4 +1,4 @@
-angular.module('uplodr', ['ngRoute'])
+angular.module('uplodr', ['ngRoute', 'ui.bootstrap'])
   .config(($routeProvider) => (
     $routeProvider
     .when('/', {
