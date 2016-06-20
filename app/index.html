@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>UplodR</title>
+</head>
+
+<body>
+    <div ng-app="uplodr">
+        <div class="header">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#/">UplodR</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#/todo">ToDo</a></li>
+                            <li><a ng-href="#/notes">Notes</a></li>
+                            <li><a ng-href="#/upload">Files</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div ng-view></div>
+    </div> -->
+        <div class="container">
+            <div ng-view></div>
+        </div>
+            <div class="footer">
+            <span ng-controller = 'LogOutCtrl'>
+              <button class = 'btn btn-danger' ng-click='logOut()' type='submit' id='logOut' aria-label = 'log out'>Log Out of UplodR</button>
+            </span>
+        </div>
+    </div>
+    <script type='text/javascript' src='lib/angular/angular.min.js'></script>
+    <script type='text/javascript' src='lib/angular-animate/angular-animate.min.js'></script>
+    <script type='text/javascript' src='lib/angular-route/angular-route.min.js'></script>
+    <script type='text/javascript' src='lib/angular-touch/angular-touch.min.js'></script>
+    <script type='text/javascript' src='lib/jquery/dist/jquery.min.js'></script>
+    <script type='text/javascript' src='lib/angular-bootstrap/ui-bootstrap-tpls.min.js'></script>
+    <script type='text/javascript' src='lib/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='lib/firebase/firebase.js'></script>
+    <script type='text/javascript' src='main.js'></script>
+    <script type='text/javascript' src='home.js'></script>
+    <script type='text/javascript' src='todo/todo.js'></script>
+    <script type='text/javascript' src='notes/notes.js'></script>
+    <script type='text/javascript' src='upload/upload.js'></script>
+    <script type='text/javascript' src='firebase.js'></script>
+    <script type='text/javascript' src='twitter/twitter.js'></script>
+    <script type='text/javascript' src='facebook/facebook.js'></script> 
+</body>
+
+</html>
