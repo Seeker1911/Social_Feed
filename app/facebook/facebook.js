@@ -4,7 +4,7 @@ angular.module('uplodr')
 //     facebookFactory.facebookAuth()
 // })
 
-.factory('facebookFactory', () => {
+.factory('facebookFactory', ($location) => {
     // var facebookToken = null;
     // var userID = null;
     return {
@@ -14,6 +14,7 @@ angular.module('uplodr')
             var provider = new firebase.auth.FacebookAuthProvider();
             // var userID = firebase.auth().currentUser.uid
             if (firebase.auth().currentUser) {
+                $location.path('/todo');
                 // statement
                 // console.log("userID: ", userID);
             } else {

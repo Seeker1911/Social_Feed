@@ -5,12 +5,12 @@ angular.module('uplodr')
 
   	$scope.addNote = () => {
 	    $scope.groups.push({ title: $scope.newNote.slice(0, 50), content: $scope.newNote});
-	    $scope.newNote = '';
-	    return $timeout(() => {
-	        const userID = authFactory.getUserID();//facebookFactory.getUserID() || twitterFactory.getUserID()
+	        return $timeout(() => {
+	        const userID = authFactory.getUserID(); //facebookFactory.getUserID() || twitterFactory.getUserID()
 
-	        firebase.database().ref('/Notes').push({uid: userID, Note: newNote});
-	      })
+	        firebase.database().ref(userID).push({newNote: newNote.innerHTML})
+	    	.then(() => $scope.newNote = '');
+	    })
   }
 
   // })

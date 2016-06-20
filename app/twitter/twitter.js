@@ -4,7 +4,7 @@ angular.module('uplodr')
 // 	twitterFactory.twitterAuth()
 // })
 
-.factory('twitterFactory', () => {
+.factory('twitterFactory', ($location) => {
     // var twitterToken = null;
     // var userID = null;
     return {
@@ -12,10 +12,11 @@ angular.module('uplodr')
             //var authWindow = new BrowserWindow({ width: 800, height: 600, show: false, 'node-integration': false });
             // createWindow();
             var provider = new firebase.auth.TwitterAuthProvider();
-            var userID = firebase.auth().currentUser.uid
-            if (userID) {
+            // var userID = firebase.auth().currentUser.uid
+            if (firebase.auth().currentUser) {
                 // statement
-                console.log("userID: ", userID);
+                $location.path('/todo');
+                // console.log("userID: ", userID);
             } else {
                 // statement
                 return firebase.auth().signInWithPopup(provider)

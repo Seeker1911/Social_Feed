@@ -9,27 +9,31 @@ var config = {
   };
   firebase.initializeApp(config);
 
-  firebase.auth().onAuthStateChanged(function(user) {
-	if (user) {
-		  // User is signed in.
-	  console.log("User logged in: ", user.uid);
-		// return {
-		// 	getUserID: function() {
-  //           return userID;
-  //       }
-		// }
-	  
-	} else {
-	    // No user is signed in.
-	  console.log("No user signed in");
-	}
-  });
 })
 
-  .factory('authFactory', () => {
+
+
+  .factory('authFactory', ($location, $timeout) => {
+    let userID = null;
+    firebase.auth().onAuthStateChanged(function(user) {
+    	if (user) {
+        userID = user.uid
+    		  // User is signed in.
+    	  console.log("User logged in: ", user.uid);
+        $location.path('/todo');
+    		$timeout()
+    	  
+    	} else {
+    	    // No user is signed in.
+    	  console.log("No user signed in");
+        $location.path('/');
+        $timeout()
+    	}
+    });
   	return {
   		getUserID () {
-  			return firebase.auth().currentUser.uid
+  			return userID
+        // firebase.auth().currentUser.uid
 
   		}
   	}

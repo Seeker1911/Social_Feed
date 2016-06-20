@@ -1,57 +1,42 @@
 'use strict';
 
 angular.module('uplodr')
-  .controller('TodoCtrl', function ($scope, $timeout, facebookFactory, twitterFactory, $http, authFactory) {
-    const API_URL = 'https://capstone-cf12b.firebaseio.com'
-    $scope.todos = [ ];
-    // $scope.options = {};
+    .controller('TodoCtrl', function($scope, $timeout, facebookFactory, twitterFactory, $http, authFactory, $location) {
+        const API_URL = 'https://capstone-cf12b.firebaseio.com'
+        $scope.todos = [];
+        // $scope.options = {};
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                let userID = user.uid
+                firebase.database().ref(userID).on('child_added', function(childData) {
+                    $timeout(() => {
+                        console.log('', childData);
+                        let todo = childData.val()
+                        todo.key = childData.key
+                        $scope.todos.push(todo)
+                    });
+                })
+            } else {
+                $location.path('/')
+            }
+        })
 
-    $scope.addTodo = function (){ //bm 
-      // $scope.todos.push($scope.todo);
-      $scope.submit($scope.todo)
-        .then(() => $scope.todo = '');
-    };
+        $scope.addTodo = function(todo) {
+            console.log("todo: ", $scope.todo);
+            $scope.submit($scope.todo)
+                .then(() => $scope.todo = '');
+        };
 
-    $scope.removeTodo = function (index) {
-      $scope.todos.splice(index, 1);
-    };
 
-    $scope.submit = function (todo) {
-      return $timeout(() => {
-        const userID = authFactory.getUserID();//facebookFactory.getUserID() || twitterFactory.getUserID()
+        $scope.submit = function(todo) {
+            const userID = authFactory.getUserID()
+            return $timeout(() => {
+                firebase.database().ref(userID).push({ todo: todo });
 
-        firebase.database().ref('/ToDo').push({uid: userID, todo: todo});
-      })
-    }
+            })
+        }
 
-      
-    //  $http.get(`${API_URL}/ToDo.json`) 
-    //   .then((res) => {
-    //   if (res) {
-    //     console.log("data: ", res);
-    //     for (let id in res.data) {
-    //       res.data[id].key=id;
-    //       $scope.todos.push(res.data[id])
-    //        // addItemToTable(data[id])
-    //     }
-    //     console.log("$scope.todos: ", $scope.todos);
-    //   }
-    // })
-
-    // Firebase listeners for child data updates
-    firebase.database().ref('/ToDo').on('child_added', function(childData) {
-      $timeout(() => {
-        let todo = childData.val()
-        todo.key = childData.key
-        $scope.todos.push(todo)
-        // console.log("todo: ", $scope.todos);
-      });
-    })
-
-    firebase.database().ref('/ToDo').on('child_changed', function(childData) {
-      $timeout(() => {
-        // $scope.options[childData.key] = childData.val();
-      });
-    })
-
-  });
+        $scope.removeTodo = function(index) {
+            $scope.todos.splice(index, 1);
+        };
+    });

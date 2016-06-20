@@ -25,22 +25,16 @@ angular.module('uplodr', ['ngRoute', 'ui.bootstrap'])
             templateUrl: 'upload/upload.html',
             controller: 'UploadCtrl'
         })
-    //   $http({
-    //     method: 'GET',
-    //     url: 'https://capstone-cf12b.firebaseio.com/'
-    // }).then(function successCallback(response) {
-    //     console.log("status: ", status);
-    //     console.log("data: ", data);
-    //     // this callback will be called asynchronously
-    //     // when the response is available
-    // }, function errorCallback(response) {
-    //     // called asynchronously if an error occurs
-    //     // or server returns response with an error status.
-    // });
-
+   
     )
 
   )
+
+.controller('LogOutCtrl', function($scope, authFactory) {
+    $scope.logOut = function() {
+        firebase.auth().signOut();
+    }
+})
 
     
 

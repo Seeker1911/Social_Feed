@@ -39,6 +39,9 @@
             <div ng-view></div>
         </div>
             <div class="footer">
+            <span ng-controller = 'LogOutCtrl'>
+              <button class = 'btn btn-danger' ng-click='logOut()' type='submit' id='logOut' aria-label = 'log out'>Log Out of UplodR</button>
+            </span>
         </div>
     </div>
     <script type='text/javascript' src='lib/angular/angular.min.js'></script>
