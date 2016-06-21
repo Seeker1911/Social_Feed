@@ -17,7 +17,7 @@
      <!--Todos List -->
      <div ng-model = 'todos'>     
       <p style = "padding:5px 10px;" class = 'input-group' ng-repeat = 'todo in todos'>
-      <input type = 'text' ng-model = 'todo.todo' class = 'form-control'>
+      <input type = 'text' ng-model = 'todo.text' class = 'form-control'>
       <span class = 'input-group-btn'>
         <button class = 'btn btn-danger' ng-click = 'removeTodo($index)' aria-label = 'Remove'>X</button>
       </span>

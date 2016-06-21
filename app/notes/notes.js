@@ -2,45 +2,44 @@
 
 angular.module('uplodr')
   .controller('NotesCtrl', function ($scope, $timeout, facebookFactory, twitterFactory, $http, authFactory) {
-
-  	$scope.addNote = () => {
-	    $scope.groups.push({ title: $scope.newNote.slice(0, 50), content: $scope.newNote});
-	        return $timeout(() => {
-	        const userID = authFactory.getUserID(); //facebookFactory.getUserID() || twitterFactory.getUserID()
-
-	        firebase.database().ref(userID).push({newNote: newNote.innerHTML})
-	    	.then(() => $scope.newNote = '');
-	    })
-  }
-
-  // })
-
-  // .controller('AccordionCtrl', function ($scope) {
+  $scope.notes = [ ];
+  //DEFAULT BEHAVIOR ONLY ALLOWS USER TO OPEN ONE NOTE AT A TIME, CHECKBOX OPTION TO CHANGE
   $scope.oneAtATime = true;
-
-  $scope.groups = [
-    {
-      title: 'Dynamic Group Header - 1',
-      content: 'Dynamic Group Body - 1'
-    },
-    {
-      title: 'Dynamic Group Header - 2',
-      content: 'Dynamic Group Body - 2'
+  // $scope.status = {
+  //   isCustomHeaderOpen: false,
+  //   isFirstOpen: true,
+  //   isFirstDisabled: false
+  // }
+//IF USER IS SIGNED IN, LISTENS FOR ADDITIONS TO DATABASDE AND ADDS TO ARRAY
+  firebase.auth().onAuthStateChanged(function(user) {
+    if(user) {
+      let userID = user.uid 
+      firebase.database().ref(userID).orderByChild('type').equalTo('Note').on('child_added' , function(childData, note){
+        $timeout(() => {
+          let note = childData.val() 
+          note.key = childData.key
+          $scope.notes.push(note)
+        })
+      })
+    } else {
+      $location.path('/')
     }
-  ];
+  })
 
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  $scope.status = {
-    isCustomHeaderOpen: false,
-    isFirstOpen: true,
-    isFirstDisabled: false
+//PROMISE CHAIN TO PUSH TO FIREBASE AND THEN MAKE TEXT AREA BLANK
+  $scope.addNote = function(note) {
+      const userID = authFactory.getUserID();
+      return $timeout()
+        .then(() => firebase.database().ref(userID).push({text: $scope.newNote, type: 'Note'}))
+        .then(() => $scope.newNote = '')
   }
 
+   $scope.removeNote = function(index) {
+                const userID = authFactory.getUserID()
+                const notesID = $scope.notes[index].key
+                return $timeout()
+                    .then(() => firebase.database().ref(userID + '/' + notesID).remove())
+                    .then(() => $scope.notes.splice(index, 1))
+            }
 
 })
