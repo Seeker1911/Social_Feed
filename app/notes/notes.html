@@ -33,14 +33,14 @@
     </div>
     <!-- accordion group -->
     <uib-accordion close-others="oneAtATime">
-        <uib-accordion-group  ng-repeat="group in groups">
+        <uib-accordion-group  ng-repeat="note in notes">
              <uib-accordion-heading>
-             {{group.title}}
-             <!-- <span class='pull-right'> -->
-        <button class = 'btn btn-danger' type='submit' id='notesDelete' aria-label = 'Add'>X</button>
-        <!-- </span> -->
-      </uib-accordion-heading>
-            {{group.content}} 
+             {{note.text | limitTo:10}}...
+                     <!-- <span class='pull-right'> -->
+              <button class = 'btn btn-danger' type='submit' id='notesDelete' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
+                <!-- </span> -->
+              </uib-accordion-heading>
+            {{note.text}}
         </uib-accordion-group>
 
     </uib-accordion>
