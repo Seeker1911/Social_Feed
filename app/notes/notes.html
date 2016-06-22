@@ -35,7 +35,7 @@
     <uib-accordion close-others="oneAtATime">
         <uib-accordion-group  ng-repeat="note in notes">
              <uib-accordion-heading>
-             {{note.text | limitTo:10}}...
+             {{note.text | limitTo:30}}...
                      <!-- <span class='pull-right'> -->
               <button class = 'btn btn-danger' type='submit' id='notesDelete' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
                 <!-- </span> -->

@@ -1,7 +1,10 @@
-<div>
+<div ng-controller='UploadCtrl'>
     <h1>Upload Files</h1>
     <form ng-submit="addFile()">
-        <input type="file" ng-model="newFile">
+        <input type="file">
         <input class='btn btn-primary' type="submit" value="upload">
     </form>
+    <div>
+        <a href="{{file}}" ng-repeat="file in files">{{file}}</a>
+    </div>
 </div>

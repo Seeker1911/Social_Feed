@@ -14,7 +14,7 @@ angular.module('uplodr')
   firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
       let userID = user.uid 
-      firebase.storage().ref(userID).orderByChild('type').equalTo('Note').on('child_added' , function(childData, note){
+      firebase.database().ref(userID).orderByChild('type').equalTo('Note').on('child_added' , function(childData, note){
         $timeout(() => {
           let note = childData.val() 
           note.key = childData.key
@@ -30,7 +30,7 @@ angular.module('uplodr')
   $scope.addNote = function(note) {
       const userID = authFactory.getUserID();
       return $timeout()
-        .then(() => firebase.storage().ref(userID).push({text: $scope.newNote, type: 'Note'}))
+        .then(() => firebase.database().ref(userID).push({text: $scope.newNote, type: 'Note'}))
         .then(() => $scope.newNote = '')
   }
 
