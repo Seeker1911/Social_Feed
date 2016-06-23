@@ -37,7 +37,7 @@
              <uib-accordion-heading>
              {{note.text | limitTo:30}}...
                      <!-- <span class='pull-right'> -->
-              <button class = 'btn btn-danger notesDelete' type='submit' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
+              <button class = 'btn btn-danger pull-right deleteButton' type='submit' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
                 <!-- </span> -->
               </uib-accordion-heading>
             {{note.text}}

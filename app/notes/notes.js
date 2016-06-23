@@ -38,7 +38,7 @@ angular.module('uplodr')
                 const userID = authFactory.getUserID()
                 const notesID = $scope.notes[index].key
                 return $timeout()
-                    .then(() => firebase.storage().ref(userID + '/' + notesID).remove())
+                    .then(() => firebase.database().ref(userID + '/' + notesID).remove())
                     .then(() => $scope.notes.splice(index, 1))
             }
 
