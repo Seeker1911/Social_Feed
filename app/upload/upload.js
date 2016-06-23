@@ -54,5 +54,15 @@ angular.module('uplodr')
             .then(snap => snap.val())
             .then(data => $scope.file = data)
 
+         $scope.removeFile = function(index) {
+              const userID = authFactory.getUserID()
+              const fileID = $scope.files[index].key
+              const file = $scope.files[index].name
+              return $timeout()
+                  .then(() => firebase.storage().ref(file).delete())
+                  .then(() => firebase.database().ref(userID + '/' + fileID).remove())
+                  .then(() => $scope.files.splice(index, 1))
+          } 
+
       })
 

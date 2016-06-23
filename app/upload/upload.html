@@ -9,16 +9,18 @@
 	<div class='container'>
 	<div class='row'>
 		
-	<div class='col-sm-5 col-lg-5'>
-		
-	</div>
-    <div>
-        <a class='col-sm-2 col-lg-2 btn-sm btn-info btn-block storageBucket' role='button' target='_blank' href="{{file.url}}" ng-repeat="file in files">{{file.name}} </a>
-        <!-- <button class = 'btn btn-danger pull-right' ng-click = 'removeTodo($index)' aria-label = 'Remove'>X</button> -->
+	<div class='col-sm-2 col-lg-2'></div>
+	<div class="col-sm-8 col-lg-8">
+	    <div class ='row' ng-repeat="(index, file) in files">
+		    <div class='col-xs-11'>
+	    	    <a class='btn btn-info btn-block' role='button' target='_blank' href="{{file.url}}">{{file.name}}</a>
+		    </div>
+	        <div class='col-xs-1'>
+	        	<button class = 'btn btn-danger' ng-click = 'removeFile(index)' aria-label = 'Remove'>X</button>
+        	</div>
+	    </div>
     </div>
-    <div class='col-sm-5 col-lg-5'>
-    	
-    </div>
+    <div class='col-sm-2 col-lg-2'></div>
 	</div>
 	<!-- </div> -->
     <!-- End controller DIV -->
