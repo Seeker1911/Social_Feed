@@ -1,10 +1,25 @@
 <div ng-controller='UploadCtrl'>
-    <h1>Upload Files</h1>
+    <!-- <h1>Upload Files</h1> -->
+    <p style='font-weight: bold'>Add a file:</p>
     <form ng-submit="addFile()">
-        <input type="file">
-        <input class='btn btn-primary' type="submit" value="upload">
+        <input type="file" class='btn fileUpload'>
+        <input class='btn btn-primary storageBucket' type="submit" value="upload">
     </form>
-    <div>
-        <a href="{{file}}" ng-repeat="file in files">{{file}}</a>
+	<!-- Stored items links -->
+	<div class='container'>
+	<div class='row'>
+		
+	<div class='col-sm-5 col-lg-5'>
+		
+	</div>
+    <div class=''>
+        <a class='col-sm-2 col-lg-2 btn-sm btn-info btn-block storageBucket' role='button' target='_blank' href="{{file.url}}" ng-repeat="file in files">{{file.name}}</a>
+        
     </div>
+    <div class='col-sm-5 col-lg-5'>
+    	
+    </div>
+	</div>
+	<!-- </div> -->
+    <!-- End controller DIV -->
 </div>

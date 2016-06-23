@@ -21,7 +21,7 @@
             <label for="newNote">Add a note:</label>
             <textarea class="form-control" rows="5" id="newNote" ng-model="newNote">{{newNote}}</textarea>
             <span class='input-group-btn'>
-        <button class = 'btn btn-default' type='submit' aria-label = 'Add'>Add</button>
+        <button class = 'btn btn-primary' type='submit' aria-label = 'Add'>Add</button>
       </span>
         </form>
     </div>
@@ -37,7 +37,7 @@
              <uib-accordion-heading>
              {{note.text | limitTo:30}}...
                      <!-- <span class='pull-right'> -->
-              <button class = 'btn btn-danger' type='submit' id='notesDelete' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
+              <button class = 'btn btn-danger notesDelete' type='submit' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
                 <!-- </span> -->
               </uib-accordion-heading>
             {{note.text}}

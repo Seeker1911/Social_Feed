@@ -15,6 +15,11 @@ body {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
+
+li:active {
+  border-bottom: 1px solid blue;
+  color: blue;
+}
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -24,7 +29,17 @@ body {
 }
 
 /* UI Elements */
-#notesDelete {
+.notesDelete {
+  margin-left: 50px;
+}
+
+.fileUpload {
+  padding-left: 0;
+
+}
+
+.storageBucket {
+  margin-top: 10px;
 }
 
 /* Custom page footer */
@@ -48,13 +63,6 @@ body {
   padding: 14px 24px;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -62,7 +70,7 @@ body {
     max-width: 730px;
   }
 
-  /* Remove the padding we set earlier */
+  /* Remove the padding set earlier */
   .header,
   .marketing,
   .footer {

@@ -1,7 +1,3 @@
-  // <form ng-submit="addFile()">
-  //       <input type="file" ng-model="newFile">
-  //       <input class='btn btn-primary' type="submit" value="upload">
-  //   </form>
 angular.module('uplodr')
   .factory('uploadFactory', ($timeout) => ({
     send (file, path = file.name) {
@@ -23,30 +19,31 @@ angular.module('uplodr')
       $scope.files = [];
           const userID = authFactory.getUserID()
           const storageRef = firebase.storage().ref(userID)
+
+         firebase.database().ref(userID).orderByChild('type').equalTo('file').on('child_added', function(childData) {
+            $timeout(() => {
+              let file = childData.val()
+              file.key = childData.key
+              $scope.files.push(file)
+          });
+      })
           $scope.addFile = function(newFile) {
             const input = document.querySelector('[type="file"]')
             const file = input.files[0]
          
-            console.log("scope files", $scope.files)
-            console.log("file: ", file)
-
-        firebase.database().ref(userID).orderByChild('type').equalTo('file').on('child_added', function(childData) {
-                $timeout(() => {
-                    let file = childData.val()
-                    file.key = childData.key
-                    // $scope.files.push(file)
-                });
-            })
-
             uploadFactory.send(file) 
               .then(res => {
-                $scope.files.push(res.a.name)
-            console.log("res", res.a.name);
-
-                return res.downloadURL
+                console.log("res: ", res);
+                const fileData = {
+                  name: res.a.name,
+                  url: res.downloadURL,
+                  type: 'file'
+                }
+                // $scope.files.push(fileData)
+                return fileData
               })
-              .then((url) => {
-                firebase.database().ref(userID).push({url, type: 'file'})
+              .then((fileData) => {
+                firebase.database().ref(userID).push(fileData)
               })
               console.log('files', $scope.files);
           }
