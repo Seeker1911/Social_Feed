@@ -1,10 +1,30 @@
-
-<div ng-controller="UploadCtrl as up">
-        <h1>{{up.heading}}</h1>
-        <form ng-submit="up.submit()">
-        	<input type="file" ng-model="up.file">
-        	<input class='btn btn-info' type="submit" value="upload">
-        </form>
-        <img ng-src="{{url}}" ng-repeat="url in up.photoURLs" alt="">
-      </div>
-
+<div ng-controller='UploadCtrl'>
+    <!-- <h1>Upload Files</h1> -->
+    <p style='font-weight: bold'>Add a file:</p>
+    <form ng-submit="addFile()">
+        <input type="file" class='fileUpload'>
+        <input class='btn btn-primary storageBucket' type="submit" value="upload">
+    </form>
+	<!-- Stored items links -->
+	<div class='container'>
+	<div class='row'>
+		
+	<!-- <div class='col-sm-1 col-lg-2'></div> -->
+	<div class="col-sm-6 col-lg-8">
+	    <div class ='row' ng-repeat="(index, file) in files">
+		    <div class='col-xs-7 fileMargin'>
+	    	    <a class='btn btn-default ' role='button' target='_blank' href="{{file.url}}">{{file.name}}</a>
+		    </div>
+	        <div class='col-xs-1 fileMargin'>
+	        	<button class = 'btn btn-danger' ng-click = 'removeFile(index)' aria-label = 'Remove'>X</button>
+        	</div>
+        	<div class='col-xs-4'>
+        		
+        	</div>
+	    </div>
+    </div>
+    <div class='col-sm-6 col-lg-2'></div>
+	</div>
+	<!-- </div> -->
+    <!-- End controller DIV -->
+</div>
