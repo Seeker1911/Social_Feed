@@ -46,6 +46,7 @@ angular.module('uplodr')
                 firebase.database().ref(userID).push(fileData)
               })
               console.log('files', $scope.files);
+              input.value = null 
           }
 
 

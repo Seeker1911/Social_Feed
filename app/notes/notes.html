@@ -20,8 +20,8 @@
         <form ng-submit="addNote()">
             <label for="newNote">Add a note:</label>
             <textarea class="form-control" rows="5" id="newNote" ng-model="newNote">{{newNote}}</textarea>
-            <span class='input-group-btn'>
-        <button class = 'btn btn-primary' type='submit' aria-label = 'Add'>Add</button>
+            <span class=''>
+        <button class = 'btn btn-primary pull-right' type='submit' aria-label = 'Add'>Add</button>
       </span>
         </form>
     </div>
@@ -32,20 +32,35 @@
         </label>
     </div>
     <!-- accordion group -->
+    <div class='container'>
+    <div class='row'>
+    <div class='col-sm-2 col-lg-2'></div>
+    <div class="col-sm-8 col-lg-8">
+    <div class ='row' ng-repeat="(index, note) in notes">
+    <div class='col-xs-11 cleanupUI'>
+
     <uib-accordion close-others="oneAtATime">
-        <uib-accordion-group  ng-repeat="note in notes">
+        <uib-accordion-group>
+
              <uib-accordion-heading>
              {{note.text | limitTo:30}}...
                      <!-- <span class='pull-right'> -->
-              <button class = 'btn btn-danger pull-right deleteButton' type='submit' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
+              <!-- <button class = 'btn btn-danger pull-right cleanupUI' type='submit' ng-click='removeNote($index)' aria-label = 'delete'>X</button> -->
                 <!-- </span> -->
               </uib-accordion-heading>
             {{note.text}}
         </uib-accordion-group>
 
     </uib-accordion>
-
-
+    </div>
+    <div class='col-xs-1 cleanupUI'>
+    <button class = 'btn btn-danger deleteButton' type='submit' ng-click='removeNote($index)' aria-label = 'delete'>X</button>
+    </div>
+    </div>
+    </div>
+    <div class='col-sm-2 col-lg-2'></div>
+    </div>
+    </div>
 
 
     <!-- below are examples of other types of accordians with ui.bootstrap -->
