@@ -1,9 +1,6 @@
 body {
-    padding: 0;
+   padding: 0;
 }
-
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
 
 .header,
 .marketing,
@@ -16,7 +13,7 @@ body {
 /* Custom page header */
 
 .header {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid orange;
     margin-bottom: 10px;
 }
 
@@ -35,7 +32,9 @@ li:active {
     padding-bottom: 19px;
 }
 
-
+#js-navbar-collapse {
+  margin-left: -15px;
+}
 /* UI Elements */
 
 .cleanupUI {
@@ -54,16 +53,16 @@ li:active {
     display: inline;
 }
 
+.addFile {
+  margin-bottom: 20px;
+}
+
 .fileMargin {
     margin-top: 10px;
 }
 
 .storageBucket {
     margin-top: 10px;
-}
-
-.navbar-collapse {
-    box-shadow: 0 3px 3px lightgray;
 }
 
 .shadow {
@@ -76,27 +75,12 @@ li:active {
 .footer {
     padding-top: 19px;
     color: #777;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid orange;
 }
 
 .container-narrow > hr {
     margin: 30px 0;
 }
-
-
-/* /* Main marketing message and sign up button */
-
-
-/* .jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-  */
-
 
 /* Responsive: Portrait tablets and up */
 
@@ -124,6 +108,7 @@ li:active {
 @media screen and (max-width: 768px) {
     .navbar-header {
         /* border-bottom: 1px solid grey; */
-        box-shadow: 0 10px 7px grey;
+        box-shadow: 0 5px 5px grey;
+        /* background-color: orange; */
     }
 }
