@@ -19,7 +19,6 @@ var config = {
     	if (user) {
         userID = user.uid
     		  // User is signed in.
-    	  console.log("User logged in: ", user.uid);
         $location.path('/todo');
     		$timeout()
     	  
